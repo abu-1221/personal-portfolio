@@ -50,7 +50,7 @@ export default function Hero() {
   const subtitleOpacity = useTransform(smoothProgress, [0.1, 0.4], [1, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[110vh] md:h-[180vh]" id="home">
+    <div ref={containerRef} className="relative h-screen" id="home">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#0a0a0a]">
         
         {/* Background Gradient */}

@@ -11,7 +11,7 @@ export default function About() {
   ];
 
   return (
-    <section className="relative z-20 bg-[#0a0a0a] py-32 px-4 md:px-12 overflow-hidden" id="about">
+    <section className="relative z-20 bg-[#0a0a0a] py-16 px-4 md:px-12 overflow-hidden" id="about">
       {/* Background Ambience */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-600/10 rounded-full blur-[60px] md:blur-[120px]" />
