@@ -190,9 +190,9 @@ export default function Hero() {
                 >
                   {/* Image */}
                   <motion.img
-                    src="/profile.jpg"
+                    src="/personal-portfolio/profile.jpg"
                     alt="Abu Backer Siddique M"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-[center_20%]"
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 1.5, delay: 0.2 }}
