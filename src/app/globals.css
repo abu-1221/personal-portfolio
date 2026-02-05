@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Optimization for mobile scroll performance */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+:root {
+  --background: #121212;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .mask-linear-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 150px,
+      black calc(100% - 150px),
+      transparent
+    );
+  }
+}
