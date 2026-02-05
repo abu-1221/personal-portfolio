@@ -190,7 +190,7 @@ export default function Hero() {
                 >
                   {/* Image */}
                   <motion.img
-                    src="/personal-portfolio/profile.jpg"
+                    src="/profile.jpg"
                     alt="Abu Backer Siddique M"
                     className="w-full h-full object-cover object-[center_20%]"
                     initial={{ scale: 1.2 }}
