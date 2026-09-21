@@ -1,7 +1,7 @@
 "use client";
 
-import { useScroll, useSpring, useMotionValueEvent, motion, MotionValue } from "framer-motion";
-import { useEffect, useRef, ReactNode } from "react";
+import { useScroll, useSpring, useMotionValueEvent, MotionValue } from "framer-motion";
+import { useRef, ReactNode } from "react";
 
 interface ScrollyVideoProps {
   src: string;

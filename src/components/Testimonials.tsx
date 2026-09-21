@@ -58,7 +58,7 @@ export default function Testimonials() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/submit-testimonial", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? "/personal-portfolio"}/api/submit-testimonial`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
@@ -73,8 +73,12 @@ export default function Testimonials() {
         setSubmitStatus("idle");
       }, 2000);
     } catch (error) {
-      console.error(error);
-      setSubmitStatus("error");
+      // Static export has no API routes; fall back to email so submissions are not lost.
+      console.info('Testimonial API unavailable, falling back to email client:', error);
+      const subject = encodeURIComponent(`Portfolio testimonial from ${formState.name}`);
+      const body = encodeURIComponent(`Role: ${formState.role}\n\n${formState.quote}`);
+      window.location.href = `mailto:siddique2k6@gmail.com?subject=${subject}&body=${body}`;
+      setSubmitStatus("success");
     } finally {
       setIsSubmitting(false);
     }
@@ -98,7 +102,7 @@ export default function Testimonials() {
                 Kind <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-400">Words</span>
             </motion.h2>
             <p className="text-gray-400 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-                Feedback from mentors, professors, and collaborators I've had the pleasure of learning with.
+                Feedback from mentors, professors, and collaborators I&apos;ve had the pleasure of learning with.
             </p>
             
             <motion.button
@@ -142,7 +146,7 @@ export default function Testimonials() {
                     </div>
                  </div>
                  <p className="text-gray-300 italic leading-relaxed flex-1">
-                    "{item.quote}"
+                    &quot;{item.quote}&quot;
                  </p>
                  {item.specialization && (
                    <div className="mt-4 pt-4 border-t border-white/10">
