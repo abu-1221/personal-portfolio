@@ -17,7 +17,7 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? '/personal-portfolio'}/api/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,8 +33,13 @@ export default function Contact() {
       setFormState({ name: "", email: "", message: "" });
       setTimeout(() => setIsSuccess(false), 3000);
     } catch (error) {
-      console.error('Error sending message:', error);
-      alert('Failed to send message. Please try again later.');
+      // The site is statically exported, so /api/send-email only exists when the
+      // app is deployed with a Node server. On static hosts (GitHub Pages) fall
+      // back to the visitor's email client so the form still works.
+      console.info('Contact API unavailable, falling back to email client:', error);
+      const subject = encodeURIComponent(`Portfolio contact from ${formState.name}`);
+      const body = encodeURIComponent(`${formState.message}\n\n- ${formState.name} (${formState.email})`);
+      window.location.href = `mailto:siddique2k6@gmail.com?subject=${subject}&body=${body}`;
     } finally {
       setIsSubmitting(false);
     }
@@ -58,14 +63,14 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-              Let's <br />
+              Let&apos;s <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-purple-500">
                 Connect.
               </span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-md leading-relaxed">
-              I'm currently available for freelance projects and open to opportunities.
-              If you have a project that needs some creative touch, I'd love to hear about it.
+              I&apos;m currently available for freelance projects and open to opportunities.
+              If you have a project that needs some creative touch, I&apos;d love to hear about it.
             </p>
 
             <div className="flex flex-col gap-6 mb-12">
@@ -182,7 +187,7 @@ export default function Contact() {
           <div className="p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm">
             <h4 className="text-blue-400 font-bold mb-4 uppercase tracking-wider text-sm">Personal Details</h4>
             <div className="space-y-2 text-gray-300 text-sm">
-              <p><span className="text-gray-500">Father's Name:</span> Mohamed Faize Basha. B</p>
+              <p><span className="text-gray-500">Father&apos;s Name:</span> Mohamed Faize Basha. B</p>
               <p><span className="text-gray-500">Date of Birth:</span> April 16, 2006</p>
               <p><span className="text-gray-500">Gender:</span> Male</p>
               <p><span className="text-gray-500">Marital Status:</span> Single</p>

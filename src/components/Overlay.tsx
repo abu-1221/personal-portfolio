@@ -1,8 +1,8 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useTransform, motion, MotionValue } from "framer-motion";
 
-export default function Overlay({ scrollYProgress }: { scrollYProgress: any }) {
+export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
   // Opacity transforms
   const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.2], [1, 1, 0]);
   const opacity2 = useTransform(
